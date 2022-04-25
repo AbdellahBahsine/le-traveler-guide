@@ -15,7 +15,6 @@ import moment from 'moment';
 const ArticlePage = () => {
 
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [footerPosts, setFooterPosts] = useState(null);
     const [loadingFooter, setLoadingFooter] = useState(true);
 
