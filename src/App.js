@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(!Cookies.get('authToken')){
+    if(!Cookies.get('authToken') || Cookies.get('authToken') === 'undefined'){
       dispatch(setLogout())
     }
   }, [dispatch])
