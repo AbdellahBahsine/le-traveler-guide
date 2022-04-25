@@ -21,6 +21,7 @@ function App() {
   useEffect(() => {
     if(!Cookies.get('authToken') || Cookies.get('authToken') === 'undefined'){
       dispatch(setLogout())
+      Cookies.remove('authToken')
     }
   }, [dispatch])
 
