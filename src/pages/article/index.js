@@ -20,7 +20,7 @@ const ArticlePage = () => {
 
     let { id } = useParams();
 
-    const disqusShortname = "le-traveler-guide-herokuapp-com"
+    const disqusShortname = "le-trarveler-guide"
     const disqusConfig = {
         url: `https://le-traveler-guide.netlify.app/article/${id}`,
         identifier: id,
