@@ -11,11 +11,16 @@ const DashboardCreatePostComponent = ({isOpen, setIsOpen, handleClick, setLoadin
 
     const {title, body, image} = data
 
-    const handleSubmit = () => {
+    const handleSubmit = e => {
+        e.preventDefault();
+        const fd = new FormData();
+        fd.append('title', title)
+        fd.append('body', body)
+        fd.append('image', image)
 
         setFetching(true)
 
-        axios.post('http://localhost:8000/api/posts/create', data, { headers: { 
+        axios.post('http://localhost:8000/api/posts/create', fd, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`,
         } })
@@ -37,16 +42,18 @@ const DashboardCreatePostComponent = ({isOpen, setIsOpen, handleClick, setLoadin
                 {
                     isFetching ? <div className="fetching"><div className="loader__container"><div class="loader"></div></div></div> : '' 
                 }
-                <span onClick={handleClick}>X</span>
-                <label htmlFor="title">Title</label>
-                <input type="text" name="title" value={title} onChange={e => setData({...data, title: e.target.value})} />
+                <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
+                    <span onClick={handleClick}>X</span>
+                    <label htmlFor="title">Title</label>
+                    <input type="text" name="title" value={title} onChange={e => setData({...data, title: e.target.value})} />
 
-                <label htmlFor="body">Body</label>
-                <textarea name="body" cols="30" rows="10" value={body} onChange={e => setData({...data, body: e.target.value})}></textarea>
+                    <label htmlFor="body">Body</label>
+                    <textarea name="body" cols="30" rows="10" value={body} onChange={e => setData({...data, body: e.target.value})}></textarea>
 
-                <input type="file" accept="image/*" onChange={e => setData({...data, image: e.target.files[0]})} />
+                    <input type="file" accept="image/*" onChange={e => setData({...data, image: e.target.files[0]})} />
 
-                <button onClick={handleSubmit}>Create Article</button>
+                    <button>Create Article</button>
+                </form>
             </div>
         </div>
     )

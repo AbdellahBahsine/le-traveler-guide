@@ -64,6 +64,12 @@
 
 }
 
+.dashboard-create-post form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .dashboard-create-post span{
     position: absolute;
     top: 0;
