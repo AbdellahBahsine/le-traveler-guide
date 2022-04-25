@@ -36,6 +36,10 @@ const LoginPage = () => {
         <div className="login-page">
             <div className="login__image"></div>
             <h2>Login</h2>
+            <div className="credentials">
+                <p><strong>Username:</strong> Admin</p>
+                <p><strong>Password:</strong> 123456789</p>
+            </div>
             <div className="username__container">
                 <i className="fas fa-user"></i>
                 <input type="text" placeholder="Username" name="name" value={name} onChange={handleChange} />

@@ -30,6 +30,19 @@
     opacity: 0.8;
 }
 
+.login-page .credentials{
+    width: 300px;
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 3px;
+    padding: 15px;
+    margin: 8px 0;
+}
+
+.login-page .credentials p:first-child{
+    margin-bottom: 10px;;
+}
+
 .login-page h2{
     text-transform: uppercase;
     color: #fff;
