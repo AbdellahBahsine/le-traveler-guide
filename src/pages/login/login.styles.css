@@ -39,6 +39,10 @@
     margin: 8px 0;
 }
 
+.login-page .credentials p strong{
+    user-select: none;
+}
+
 .login-page .credentials p:first-child{
     margin-bottom: 10px;;
 }
