@@ -46,33 +46,6 @@ const ArticlesPage = () => {
         .catch(err => console.log(err))
     }, [])
 
-    const nextPage = () => {
-        if(page >= posts.last_page){
-            return;
-        }
-        
-        setPage(page + 1)
-        setLoadingArticles(true)
-    }
-
-    const prevPage = () => {
-        if(page <= 1){
-            return;
-        }
-        
-        setPage(page - 1)
-        setLoadingArticles(true)
-    }
-
-    const selectedPage = (p) => {
-        if(page < 1 || page > posts.last_page || page === p){
-            return;
-        }
-
-        setPage(p)
-        setLoadingArticles(true)
-    }
-
     const handleClick = id => {
         navigate('/article/' + id);
     }

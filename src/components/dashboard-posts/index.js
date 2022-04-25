@@ -26,7 +26,7 @@ const DashboardPostsComponent = () => {
             setLoading(false)
         })
         .catch(err => console.log(err))
-    }, [loading])
+    }, [loading]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleClick = () => {
         setIsOpen(!isOpen)
