@@ -15,7 +15,7 @@ const DashboardPostsComponent = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/posts', { headers: { 
+        axios.get('https://api-le-traveler-guide.herokuapp.com/api/posts', { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
@@ -32,7 +32,7 @@ const DashboardPostsComponent = () => {
 
     const handleRemove = id => {
         setLoading(true);
-        axios.delete('http://localhost:8000/api/post/delete/' + id, { headers: { 
+        axios.delete('https://api-le-traveler-guide.herokuapp.com/api/post/delete/' + id, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })

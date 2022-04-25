@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import './sidebar.styles.css';
 
 import axios from 'axios';
@@ -8,7 +7,7 @@ const SidebarComponent = ({setPosts, input, setInput, page, setLoadingArticles})
 
     const handleClick = () => {
         setLoadingArticles(true)
-        axios.post(`http://localhost:8000/api/posts/home?page=${page}`, {search: input}, { headers: { 
+        axios.post(`https://api-le-traveler-guide.herokuapp.com/api/posts/home?page=${page}`, {search: input}, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })

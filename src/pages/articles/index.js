@@ -22,7 +22,7 @@ const ArticlesPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/posts?page=${page}`, { headers: { 
+        axios.get(`https://api-le-traveler-guide.herokuapp.com/api/posts?page=${page}`, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
@@ -34,7 +34,7 @@ const ArticlesPage = () => {
     }, [page])
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/posts', { headers: { 
+        axios.get('https://api-le-traveler-guide.herokuapp.com/api/posts', { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })

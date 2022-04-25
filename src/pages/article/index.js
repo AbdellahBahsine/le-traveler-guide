@@ -23,22 +23,20 @@ const ArticlePage = () => {
 
     const disqusShortname = "le-traveler-guide-herokuapp-com"
     const disqusConfig = {
-        url: "http://localhost:3000/article",
-        identifier: data?.post.id + "",
-        title: data?.post.title + ""
+        url: `https://le-traveler-guide.netlify.app/article/${id}`,
+        identifier: id,
     }
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/post/' + id)
+        axios.get('https://api-le-traveler-guide.herokuapp.com/api/post/' + id)
         .then(res => {
             setData(res.data)
-            setLoading(false)
         })
         .catch(err => console.log(err))
     }, [id])
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/posts', { headers: { 
+        axios.get('https://api-le-traveler-guide.herokuapp.com/api/posts', { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })

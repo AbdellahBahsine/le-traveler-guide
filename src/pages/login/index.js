@@ -4,7 +4,7 @@ import './login.styles.css';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setLoggedUser } from '../../features/user/userSlice';
 
 const LoginPage = () => {
@@ -13,7 +13,6 @@ const LoginPage = () => {
     
     const {name, password} = credentials
 
-    const currentUser = useSelector(state => state.user.currentUser)
     const dispatch = useDispatch()
 
     const handleChange = e => {
@@ -24,10 +23,10 @@ const LoginPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/login', credentials)
+        axios.post('https://api-le-traveler-guide.herokuapp.com/api/login', credentials)
         .then(res => {
-            dispatch(setLoggedUser(res.data.data.user))
-            Cookies.set('authToken', res.data.data.token);
+            dispatch(setLoggedUser(res.data.user))
+            Cookies.set('authToken', res.data.token);
         })
         .catch(err => console.log(err.response))
     }

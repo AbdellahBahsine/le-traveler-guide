@@ -22,7 +22,7 @@ function App() {
     if(!Cookies.get('authToken')){
       dispatch(setLogout())
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="App">
@@ -30,8 +30,6 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/articles' element={<ArticlesPage />} />
         <Route path='/article/:id' element={<ArticlePage />} />
-        {/* <Route path='*' element={ <NotFoundPage /> } /> */}
-        {/* <Route path='/dashboard/*' element={!isLoggedIn ? <Navigate to="/" /> : <DashboardPage />} /> */}
         <Route exact path='/login' element={isLoggedIn ? <Navigate to="/dashboard" /> : <LoginPage />} />
         <Route exact path='/dashboard' element={isLoggedIn ?  <DashboardPage /> : <Navigate to="/login" />}  />
       </Routes>

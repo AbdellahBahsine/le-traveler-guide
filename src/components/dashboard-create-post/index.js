@@ -20,7 +20,7 @@ const DashboardCreatePostComponent = ({isOpen, setIsOpen, handleClick, setLoadin
 
         setFetching(true)
 
-        axios.post('http://localhost:8000/api/posts/create', fd, { headers: { 
+        axios.post('https://api-le-traveler-guide.herokuapp.com/api/posts/create', fd, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`,
         } })

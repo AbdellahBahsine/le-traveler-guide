@@ -20,7 +20,7 @@ const HomePage = () => {
     const [input, setInput] = useState('');
 
     useEffect(() => {
-        axios.post(`http://localhost:8000/api/posts/home?page=${page}`, {search: input}, { headers: {  
+        axios.post(`https://api-le-traveler-guide.herokuapp.com/api/posts/home?page=${page}`, {search: input}, { headers: {  
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
@@ -29,10 +29,10 @@ const HomePage = () => {
             setLoadingArticles(false)
         })
         .catch(err => console.log(err))
-    }, [page])
+    }, [page]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/posts', { headers: { 
+        axios.get('https://api-le-traveler-guide.herokuapp.com/api/posts', { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
