@@ -93,7 +93,8 @@
     padding: 40px 0;
 }
 
-.articles-page .pagination button{
+
+.articles-page .pagination .page-item{
     height: 30px;
     background-color: #E59C23;
     color: #fff;
@@ -103,15 +104,27 @@
     padding: 6px 10px;
     border-radius: 3px;
     cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.articles-page .pagination button:last-child{
+.articles-page .pagination .page-item a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.articles-page .pagination .page-item:last-child{
     margin-right: 0;
 }
 
-.articles-page .pagination button.active{
+.articles-page .pagination .page-item.active{
     border: 2px solid #E59C23;
     background: none;
+}
+
+.articles-page .pagination .page-item.active a{
     color: #E59C23;
 }
 

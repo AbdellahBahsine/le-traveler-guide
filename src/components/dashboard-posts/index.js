@@ -7,15 +7,17 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 
 import moment from 'moment';
+import Pagination from 'react-js-pagination';
 
 const DashboardPostsComponent = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [posts, setPosts] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        axios.get('https://api-le-traveler-guide.herokuapp.com/api/posts', { headers: { 
+        axios.post(`https://api-le-traveler-guide.herokuapp.com/api/posts/dashboard?page=${page}`, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
@@ -66,6 +68,22 @@ const DashboardPostsComponent = () => {
                     }
                 </tbody>
             </table>
+
+            {
+                posts?.data.length ?
+                <Pagination
+                    activePage={posts?.current_page ? posts?.current_page : 0}
+                    itemsCountPerPage={posts?.per_page ? posts?.per_page : 0 }
+                    totalItemsCount={posts?.total ? posts?.total : 0}
+                    onChange={(pageNumber) => {
+                        setLoading(true)
+                        setPage(pageNumber)
+                    }}
+                    pageRangeDisplayed={8}
+                    itemClass="page-item"
+                />
+                : ''
+            }
         </div>
     )
 }

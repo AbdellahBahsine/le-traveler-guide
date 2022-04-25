@@ -3,35 +3,9 @@ import './articles.styles.css';
 import { useNavigate } from "react-router-dom";
 
 import moment from 'moment';
+import Pagination from 'react-js-pagination';
 
-const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, setPage}) => {
-
-    const nextPage = () => {
-        if(page >= posts.last_page){
-            return;
-        }
-        
-        setPage(page + 1)
-        setLoadingArticles(true)
-    }
-
-    const prevPage = () => {
-        if(page <= 1){
-            return;
-        }
-        
-        setPage(page - 1)
-        setLoadingArticles(true)
-    }
-
-    const selectedPage = (p) => {
-        if(page < 1 || page > posts.last_page || page === p){
-            return;
-        }
-
-        setPage(p)
-        setLoadingArticles(true)
-    }
+const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, setPage}) => {
 
     const navigate = useNavigate();
 
@@ -67,13 +41,17 @@ const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, se
 
             {
                 posts?.data.length ?
-                <div className="pagination">
-                    <button onClick={prevPage}><i className="fa fa-chevron-left"></i></button>
-                    {[...Array(posts?.last_page)].slice(Math.max([...Array(posts?.last_page)].length - 5, 0)).map((x, i) =>
-                        <button onClick={() => selectedPage(i + 1)} className={ page === i + 1 ? "active" : ""}>{i + 1}</button>
-                    )}
-                    <button onClick={nextPage}><i className="fa fa-chevron-right"></i></button>
-                </div>
+                <Pagination
+                    activePage={posts?.current_page ? posts?.current_page : 0}
+                    itemsCountPerPage={posts?.per_page ? posts?.per_page : 0 }
+                    totalItemsCount={posts?.total ? posts?.total : 0}
+                    onChange={(pageNumber) => {
+                        setLoadingArticles(true)
+                        setPage(pageNumber)
+                    }}
+                    pageRangeDisplayed={8}
+                    itemClass="page-item"
+                />
                 : ''
             }
         </section>

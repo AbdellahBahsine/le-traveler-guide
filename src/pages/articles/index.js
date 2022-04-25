@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 
 import moment from 'moment';
+import Pagination from 'react-js-pagination';
 
 const ArticlesPage = () => {
 
@@ -106,14 +107,21 @@ const ArticlesPage = () => {
                         
 
                         
-                            <div className="pagination">
-                                <button onClick={prevPage}><i className="fa fa-chevron-left"></i></button>
-                                {[...Array(posts?.last_page)].map((x, i) =>
-                                    <button onClick={() => selectedPage(i + 1)} className={ page === i + 1 ? "active" : ""}>{i + 1}</button>
-                                )}
-                                <button onClick={nextPage}><i className="fa fa-chevron-right"></i></button>
-                            </div>
-                            
+                            {
+                                posts?.data.length ?
+                                <Pagination
+                                    activePage={posts?.current_page ? posts?.current_page : 0}
+                                    itemsCountPerPage={posts?.per_page ? posts?.per_page : 0 }
+                                    totalItemsCount={posts?.total ? posts?.total : 0}
+                                    onChange={(pageNumber) => {
+                                        setLoadingArticles(true)
+                                        setPage(pageNumber)
+                                    }}
+                                    pageRangeDisplayed={8}
+                                    itemClass="page-item"
+                                />
+                                : ''
+                            }
                         </section>
                     </main>
             
